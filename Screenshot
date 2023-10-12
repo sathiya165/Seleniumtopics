@@ -1,0 +1,34 @@
+import java.io.File;
+import java.io.IOException;
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.io.FileHandler;
+
+public class ScreenShot {
+
+	public static void main(String[] args) throws IOException {
+		System.setProperty("webdriver.chrome.driver","./drivers/chromedriver.exe");
+		ChromeDriver driver = new ChromeDriver();
+		driver.get("https://letcode.in/buttons");
+		File first = driver.getScreenshotAs(OutputType.FILE);
+		File Sec = new File("./snap/img.png");
+		FileHandler.copy(first, Sec);
+
+		WebElement element =driver.findElementById("property");
+		File firstele = element.getScreenshotAs(OutputType.FILE);
+		File Secele = new File("./snap/img1.png");
+		FileHandler.copy(firstele, Secele);
+		
+		WebElement info =driver.findElementByClassName("content");
+		firstele =info.getScreenshotAs(OutputType.FILE);
+		Secele = new File("./snap/img2.png");
+		FileHandler.copy(firstele, Secele);
+		
+		driver.quit();
+		
+
+	}
+
+}
