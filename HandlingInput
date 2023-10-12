@@ -1,0 +1,24 @@
+import javax.security.auth.kerberos.KeyTab;
+
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class HandlindInput {
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver","./drivers/chromedriver.exe" );
+		ChromeDriver driver = new ChromeDriver();
+		driver.get("https://letcode.in/edit");
+		driver.findElementById("fullName").sendKeys("Sathiya");
+		driver.findElementById("join").sendKeys(" Girl",Keys.TAB);
+		String mydriver = driver.findElementById("getMe").getAttribute("value");
+		System.out.println(mydriver);
+		driver.findElementById("clearMe").clear();
+		boolean value = driver.findElementById("noEdit").isEnabled();
+		System.out.println(value);
+		String readonly = driver.findElementById("dontwrite").getAttribute("readonly");
+		System.out.println(readonly);
+		driver.quit();
+	}
+
+}
+
