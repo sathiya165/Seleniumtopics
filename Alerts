@@ -1,0 +1,31 @@
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Alerts {
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver","./drivers/chromedriver.exe" );
+		ChromeDriver driver = new ChromeDriver();
+		driver.get("https://letcode.in/alert");
+		
+		driver.findElementById("accept").click();
+		Alert alert = driver.switchTo().alert();
+		String text = alert.getText();
+		System.out.println("Simple alert text "+text);
+		alert.accept();
+		
+		driver.findElementById("prompt").click();
+		driver.switchTo().alert();
+	    alert.sendKeys("Sathiya");
+		System.out.println(alert.getText());
+		alert.dismiss();
+		String name = driver.findElementById("myName").getText();
+		System.out.println(name);
+		
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		//implicityWait used to make the function wait for the mentioned time
+		
+	}
+
+}
