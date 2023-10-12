@@ -1,0 +1,35 @@
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.Rectangle;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Location {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver","./drivers/chromedriver.exe");
+		ChromeDriver driver = new ChromeDriver();
+		driver.get("https://letcode.in/buttons");
+		
+		WebElement element = driver.findElementById("position");
+		Point lp = element.getLocation();
+		int x = lp.getX();
+		int y = lp.getY();
+		System.out.println("x =>"+x + "y => "+y);
+		
+		WebElement button = driver.findElementById("color");
+		String color = button.getCssValue("background-color");
+		System.out.println(color);
+		
+		Rectangle rect = driver.findElementById("property").getRect();
+		Dimension dime = rect.getDimension();
+		System.out.println(dime);
+		System.out.println(dime.getWidth());
+		System.out.println(dime.getHeight());
+		
+		boolean isdisabled = driver.findElementByClassName("control").isEnabled();
+		System.out.println(isdisabled);
+		driver.quit();
+	}
+
+}
